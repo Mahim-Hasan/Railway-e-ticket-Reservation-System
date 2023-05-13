@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>BANGLADESH RAILWAY E-TICKETING SERVICE</title>
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html' %}
+
+
+    <section class="container my-5 py-5">
+        <h3 > You have to make the payment via this number</h3>
+        <h4 class="text-danger"> 01XXXXXXXXX </h4>
+        <h4 class="text-danger pb-5"> Amount:  </h4>
+
+        <div class="card mt-5">
+            <div class="card-header"><h5>Transaction ID</h5></div>
+            <div class="card-body py-5">
+                <h6 class="text-danger">Enter your Transaction ID to confirm your Ticket</h6>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="col-md-3 mb-3">
+                        <input class="form-control" type="text" name="trans_id" required>
+                    </div>
+                    
+                    <div >
+                        <button type="submit" class="btn btn-warning rounded-0">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="fixed-bottom">
+        {% include 'partials/footer.html' %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+
+
+});
+</script>
+{% endblock %}

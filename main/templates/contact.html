@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>BANGLADESH RAILWAY E-TICKETING SERVICE</title>
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html' %}
+
+    <section class="container py-5 my-5">
+        <h2>Our Team</h2>
+        <div class="mt-5">
+            <div>
+                <h3 class="text-info">#Mahim Hasan</h3>
+                <h3 class="text-info">#Samia Islam Sumi</h3>
+                <h3 class="text-info">#Uzzal Roy</h3>
+                <h3 class="text-info">#Sherin Sultana</h3>
+                <h3 class="text-info">#Mehedi Hasan Mim</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="fixed-bottom">
+        {% include 'partials/footer.html' %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+
+
+});
+</script>
+{% endblock %}

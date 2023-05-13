@@ -1,0 +1,35 @@
+#section-1 {
+  .musthead {
+    position: relative;
+    background-color: #343a40;
+    background: url("/static/img/home-image1.png") no-repeat 50%;
+    background-size: cover;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .sec1-l {
+    h1{
+      font-weight: 800;
+    }
+  }
+
+  .form-control {
+    background-color: #fff;;
+    border: #fff;
+  }
+
+  .input-group-text {
+    background-color: #fff;;
+    border: #fff;
+  }
+
+  .bg-opacity {
+    opacity: .8;
+  }
+
+  .btn{
+    display: block;
+    width: 100% !important;
+  }
+}

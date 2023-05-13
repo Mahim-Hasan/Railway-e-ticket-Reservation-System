@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>BANGLADESH RAILWAY E-TICKETING SERVICE</title>
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html' %}
+
+    <section class="container my-5 py-5 ">
+        <h3> Ticket verify</h3>
+
+        <div class="card mt-5">
+            <div class="card-header"><h5>Verify your Ticket</h5></div>
+            <div class="card-body py-5">
+                <h6 class="text-danger">Enter your phone number to verify your Ticket</h6>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="col-md-3 mb-3">
+                        <input class="form-control" type="text" name="phone" required>
+                    </div>
+                    
+                    <div >
+                        <button type="submit" class="btn btn-warning rounded-0">Verify</button>
+                    </div>
+                </form>
+                {% for message in messages%}
+                    <div class="container my-4">
+                        <div class="row justify-content-center">
+                            <div class="col-md-3 text-info">
+                            {{message}}        
+                            </div>        
+                        </div>
+                    </div> 
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="fixed-bottom">
+        {% include 'partials/footer.html' %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+
+
+});
+</script>
+{% endblock %}
