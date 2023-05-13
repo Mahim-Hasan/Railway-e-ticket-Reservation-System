@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>BANGLADESH RAILWAY E-TICKETING SERVICE</title>
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html' %}
+
+    <section id="section-1">
+        <div class="container mt-5 pt-5">
+            <div class="row d-flex justify-content-center align-items-center">            
+                <div class="col-md-4 offset-md-1 bg-secondary bg-opacity text-white p-3 mb-2">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="row form-group">
+                            <div class="col-12 mb-2">
+                                <label>Route</label>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <div class="input-group">
+                                    <select class="form-select" id="from" name="from" style="text-transform: uppercase;" required>
+                                        <option selected>FROM</option>
+                                        {% for start in starts %}
+                                            <option value="{{ start.id }}"> {{ start.name }} </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div> 
+                            <div class="col-6 mb-2">
+                                <div class="input-group">
+                                    <select class="form-select" id="to" name="to" style="text-transform: uppercase;" required>
+                                        <option selected>To</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <label>Date</label>
+                                <div class="input-group mt-2">
+                                    <input type="date" name="date" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <label>Class</label>
+                                <div class="input-group mt-2">
+                                    <select class="form-select" name="class">
+                                        <option value="ac_b">AC_B</option>
+                                        <option value="ac_s">AC_S</option>
+                                        <option value="snigdha">Snigdha</option>
+                                        <option value="s_chair">S_Chair</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label>Passengers</label>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <div class="input-group">
+                                    <select class="form-select" name="adult">
+                                        <option value="0" selected>Adult</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                                <small>*Maximum 4 seats can be issued.</small>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <div class="input-group">
+                                    <select class="form-select" name="child">
+                                        <option value="0" selected>Child</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button type="submit" class="btn btn-dark text-white rounded-0">
+                                    <i class="fa fa-search"></i> FIND</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-7 sec1-l d-flex justify-content-end">
+                    <img class="img-fluid" src={% static 'img/train.jpg' %} alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="fixed-bottom">
+    {% include 'partials/footer.html' %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $("#from").change(function(e){
+        e.preventDefault();
+        var id = $(this).val();
+
+        $.ajax({
+            type:'GET',
+            url:'{% url 'home' %}',
+            data:{
+                "action": "get-to",
+                "id": id,
+            },
+            success: function (responses) {
+                $("#to").empty();
+                for(var i=0; i<responses.length; i++){
+                        $("#to").append('<option value="'+responses[i]['id']+'">'+responses[i]['name']+'</option>')
+                }                  
+            },
+            error: function (response) {
+                console.log('error')
+            }
+        })
+
+    })
+
+});
+</script>
+{% endblock %}

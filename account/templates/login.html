@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>USER LOGIN</title>
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html' %}
+
+<form class="container pt-5 mt-5" method="POST">
+{% csrf_token %}
+  <div class="form-row d-flex justify-content-center mb-3">
+			<div class="col-md-3">
+				<h3 class="bg-secondary text-light p-3" style="display: block; width: 100%; fill: blanchedalmond;">ACCOUNT LOGIN</h3>
+			</div>
+  </div>
+  <div class="form-row d-flex justify-content-center">
+			<div class="col-md-3 mb-3">
+				<label for="validationDefault01" >Phone</label>
+				<input type="text" class="form-control" id="validationDefault01" name="phone" required>
+			</div>
+  </div>
+  <div class="form-row d-flex justify-content-center">
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault02">Password</label>
+      <input type="password" class="form-control" id="validationDefault02" name="password" required>
+    </div>
+	</div>
+	<div class="form-row d-flex justify-content-center">
+    <div class="col-md-3 text-left">
+			<button class="btn btn-dark align-content-center" type="submit">Log In</button>
+    </div>
+	</div>
+</form>
+
+<div class="container text-center mt-4">
+  <h6>Not have an account?</h6>
+  <a type="button" href="/user/register" class="btn btn-secondary">Resgister Now</a>
+</div>
+
+	
+{% for message in messages%}
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-3 text-danger">
+      {{message}}        
+    </div>        
+  </div>
+</div> 
+{% endfor %}
+
+<section class="fixed-bottom">
+  {% include 'partials/footer.html' %}
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+
+
+});
+</script>
+{% endblock %}

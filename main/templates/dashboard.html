@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>BANGLADESH RAILWAY E-TICKETING SERVICE</title>
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html' %}
+
+    <section class="container py-3 my-5">
+        <h1 class="">Results</h1>
+        <p class="small mb-5"><a type="button" class="btn btn-danger btn-sm" href="" style="text-decoration: none;">Change </a></p>
+        <table class="table">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Train Name</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Date</th>
+                <th scope="col">Class</th>
+                <th scope="col">Passengers(Adult+Child)</th>
+                <th scope="col">Fare</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for train in trains %}
+              <tr>
+                <th scope="row">{{ train.name }}</th>
+                <td class="text-uppercase" >{{ from }}</td>
+                <td class="text-uppercase">{{ to }}</td>
+                <td>{{ date}}</td>
+                <td><b>{{class}}</b></td>
+                <td>{{ adult }} + {{ child }}</td>
+                <td>{{ costs }}</td>
+                <td class="d-flex justify-content-end"><a type="button" class="btn btn-warning rounded-0" href={% url 'purchase' id=train.id %}>Purchase</a></td>
+              </tr>
+              <!-- <tr>
+                <th scope="row">{{ train.name }}</th>
+                <td class="text-uppercase">{{ from }}</td>
+                <td class="text-uppercase">{{ to }}</td>
+                <td>{{ date}}</td>
+                <td><b>AC_S</b></td>
+                <td>{{ adult }} + {{ child }}</td>
+                <td>{{ ac_s_fare }}</td>
+                <td class="d-flex justify-content-end"><a type="button" class="btn btn-warning rounded-0" href={% url 'purchase' id=train.id %}>Purchase</a></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ train.name }}</th>
+                <td class="text-uppercase">{{ from }}</td>
+                <td class="text-uppercase">{{ to }}</td>
+                <td>{{ date}}</td>
+                <td><b>Snigdha</b></td>
+                <td>{{ adult }} + {{ child }}</td>
+                <td>{{ snigdha_fare }}</td>
+                <td class="d-flex justify-content-end"><a type="button" class="btn btn-warning rounded-0" href={% url 'purchase' id=train.id %}>Purchase</a></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ train.name }}</th>
+                <td class="text-uppercase">{{ from }}</td>
+                <td class="text-uppercase">{{ to }}</td>
+                <td>{{ date}}</td>
+                <td><b>S_Chair</b></td>
+                <td>{{ adult }} + {{ child }}</td>
+                <td>{{ s_chair_fare }}</td>
+                <td class="d-flex justify-content-end"><a type="button" class="btn btn-warning rounded-0" href={% url 'purchase' id=train.id %}>Purchase</a></td>
+              </tr> -->
+            {% endfor %}
+            </tbody>
+          </table>
+    </section>
+
+
+    <section class="fixed-bottom">
+        {% include 'partials/footer.html' %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+
+
+});
+</script>
+{% endblock %}

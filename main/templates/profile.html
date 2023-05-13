@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>BANGLADESH RAILWAY E-TICKETING SERVICE</title>
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html' %}
+
+    {% for message in messages%}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-3 text-success">
+            {{message}}        
+            </div>        
+        </div>
+    </div> 
+    {% endfor %}
+
+    <section class="container my-5">
+        <h3 class="bg-secondary text-light p-3">My Tickets</h3>
+        {% for ticket in tickets %}
+        <div class="card mt-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <h6>Ticket no: </h6>
+                                <h6>From: </h6>
+                                <h6>To: </h6>
+                                <h6>Total Seats: </h6>
+                                <h6>Booked at: </h6>
+                            </div>
+                            <div>
+                                <h6 class="text-muted">#{{ ticket.ticket_no }}</h6>
+                                <h6 class="text-muted">{{ ticket.start }} </h6>
+                                <h6 class="text-muted">{{ ticket.end }} </h6>
+                                <h6 class="text-muted">{{ ticket.total_seats }} </h6>
+                                <h6 class="text-muted">{{ ticket.timestamp }} </h6>
+                            </div>
+                            <div class="me-3 ms-5">
+                                <h6>Travel Time: </h6>
+                                <h6>Class: </h6>
+                                <h6>Fare: </h6>
+                                <h6>Phone: </h6>
+                            </div>
+                            <div>
+                                <h6 class="text-muted">{{ ticket.travel_time }}</h6>
+                                <h6 class="text-muted">{{ ticket.class_type }} </h6>
+                                <h6 class="text-muted">{{ ticket.cost }} Taka</h6>
+                                <h6 class="text-muted">{{ ticket.passenger.username}}  </h6>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="d-flex align-items-end"><a type="button" class="btn btn-danger btn-sm" href={% url 'cancel_ticket' id=ticket.id %} style="text-decoration: none;">Cancel </a></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section>
+        {% include 'partials/footer.html' %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+
+
+});
+</script>
+{% endblock %}
